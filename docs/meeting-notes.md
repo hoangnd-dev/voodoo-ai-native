@@ -1,0 +1,107 @@
+
+# Phase 1 — Build the Core Caro Game
+
+## Player
+    - Guest join with name
+    - A guest can join the game by providing a player name.
+    - No account registration or login is required.
+    - Rejoin with userId from cookie
+    - Generate a unique userId for each guest.
+    - Store the userId in a browser cookie.
+    - If the guest reconnects, use the userId from the cookie to identify the existing player.
+    - User ID and name persistence
+    - Keep the player's userId and name available while they participate in the game.
+    - The player should keep the same identity when refreshing or reconnecting to the game.
+
+## Game Engine
+    - 15 × 15 board
+    - The game board contains 225 cells.
+    - Each cell can contain X, O, or remain empty.
+    - X goes first
+    - The first player always plays as X.
+    - The second player plays as O.
+    - 20-second turn timer
+    - Each player has 20 seconds to make a move.
+    - The countdown starts when the player's turn begins.
+    - If the player does not make a move within 20 seconds, that player loses.
+    - The timer resets when the turn changes.
+    - Valid move validation
+    - A player can only place a symbol on an empty cell.
+    - A player cannot make a move when it is not their turn.
+    - A player cannot make a move after the game has ended.
+    - Invalid moves should be rejected by the game API.
+    - X → O → X turn sequence
+    - Players alternate turns after every valid move.
+    - X plays first, followed by O.
+    - The turn continues until there is a Win, Draw, or timeout.
+    - 5 consecutive symbols → Win
+    - A player wins when they have 5 consecutive symbols in a valid line.
+    - Check horizontal, vertical, and diagonal directions.
+    - The winning line should be detected by the game engine.
+    - Full board → Draw
+    - If all 225 cells are filled and nobody has won, the game ends as a Draw.
+    - A Draw does not automatically start a new game.
+## Lobby
+
+    - List available rooms
+    - Display rooms that are currently available to join.
+    - Show enough information for a guest to identify and join a room.
+    - Create room
+    - A guest can create a new room.
+    - The room creator becomes the room owner.
+    - The room creator plays as X.
+    - A newly created room starts in a waiting state.
+    - Join room
+    - A guest can join an available room.
+    - A room supports a maximum of 2 players.
+    - The second player joins as O.
+    - Once 2 players are present, the room is ready to start the game.
+    - Room owner management
+    - The room owner is responsible for starting a game.
+    - The room owner can explicitly start a new game after a Win or Draw.
+    - A new game can only be started when there are 2 players in the room.
+    - No passcode
+    - Rooms do not require a passcode to join.
+    - Any guest can join an available room.
+    - Remove empty rooms
+    - A room should be removed when no players remain.
+    - A room with at least one player remains available in the lobby.
+    - No room persistence across server restarts
+    - Room information is kept in memory only.
+    - Rooms do not need to be stored in a database.
+    - All rooms are lost when the server restarts.
+## Gameplay
+
+    - Game API
+    - Provide APIs for creating and joining rooms.
+    - Provide APIs for starting a game and making moves.
+    - Provide APIs for leaving a room.
+    - API should enforce game rules and validate moves.
+    - API should return the current game state to the client.
+    - Game UI
+    - Display the 15 × 15 game board.
+    - Display each player's name and symbol.
+    - Show whose turn it is.
+    - Display the 20-second countdown.
+    - Show the game result when a player wins, loses, or the game ends in a Draw.
+    - Show available actions based on the current game state.
+    - Start / restart game
+    - The room owner must explicitly click Start Game to begin the first game.
+    - The game must not start automatically when the second player joins.
+    - After a Win or Draw, the game must remain in its final state.
+    - The game must not restart automatically.
+    - Leave room
+    - A player can leave the room.
+    - The player's room membership should be removed.
+    - If no players remain, the room should be removed from the lobby.
+    - Play game
+    - Players take turns placing X or O on the board.
+    - The UI should update after every valid move.
+    - The game continues until there is a Win, Draw, or timeout.
+    - New game after Win/Draw with 2 players
+    - The New Game action is available only after a Win or Draw.
+    - There must still be 2 players in the room.
+    - The room owner must explicitly click New Game.
+    - Starting a New Game resets the board and turn timer.
+    - X goes first again.
+    - The game must never automatically start a new game.
