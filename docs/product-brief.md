@@ -2,114 +2,48 @@
 
 ## Overview
 
-A Vietnamese-language web app for **Caro (Gomoku)**. Two players join a shared room from different browsers, take turns on a **15×15** board, and win with **five or more** marks in a line (horizontal, vertical, or diagonal).
+A web app for **Caro (Gomoku)**. Two guests enter a name, meet in a lobby, and play on a **15×15** board. The first player is **X**, the second is **O**. A player wins with **five consecutive** marks (horizontal, vertical, or diagonal). A full board with no winner is a **draw**.
 
-**Guests can play immediately.** Signing in is optional and must never block play.
+No accounts. No passcode. Rooms live **in memory** on the server (lost on restart). The room **owner** (creator) explicitly starts the first game and starts a new game after a win or draw.
 
-## Goal
-
-In one workshop day, ship a thin end-to-end slice: two people (guest and/or signed-in) can create/join a room, play a legal match, see a Vietnamese win/draw result, and start a new game in the same room.
+**Goal today:** two browsers can create/join a room, play a legal match, see the result, and start a new game in the same room.
 
 ## Target users
 
-Casual players in Vietnam who want a short match with a friend on another device. They should not be forced to create an account.
-
-
-| Identity       | How they enter a room | Name shown                                |
-| -------------- | --------------------- | ----------------------------------------- |
-| Guest          | Types a display name  | That display name                         |
-| Signed-in user | Email + password      | Account name (no extra guest-name prompt) |
-
-
-
+Casual players who want a short match with a friend on another device. They should play immediately after typing a name.
 
 ## Core features (MVP — max 3)
 
-1. **Play Caro** — 15×15 board, alternate X/O, occupied cells locked, win/draw detection, board lock on end, Vietnamese UI, New game in the same room.
-2. **Online room** — create or join by room; live sync; exactly two players; guests allowed.
-3. **Optional auth** — sign up, log in, log out (email + password). Guests can play without an account. Signed-in players use their account name in the room.
+1. **Guest identity**
+  - Join with a **player name** (no registration / login).
+  - Server assigns a `userId`; the browser stores it in a **cookie** with the name.
+  - Same browser keeps the same guest on refresh of the landing/lobby (name is not retyped).
+2. **Lobby**
+  - **Create room:** creator is **owner** and **X**; room starts **waiting**.
+  - **List joinable rooms** (waiting, fewer than 2 players): enough info to pick one (room id + owner name).
+  - **Join room:** second player is **O**; max **2** players; **no passcode**.
+  - **Leave room:** player is removed; if the room is empty, **delete** it.
+3. **Play Caro**
+  - **15×15** board; X first; alternate turns; only empty cells; no moves off-turn or after the game has ended (enforced by the **game API**).
+  - **Win:** 5 consecutive X or O (H / V / diagonal). **Draw:** all 225 cells filled, no winner.
+  - Game does **not** start when the second player joins. **Owner clicks Start** when 2 players are present.
+  - After win/draw the board **stays**; **owner clicks New game** only if 2 players are still in the room. Board resets, **X goes first** again.
+  - UI: board, both names + symbols, whose turn, result, actions that match the current state.
 
 
 
 ## Out of scope (explicitly NOT building today)
 
-- Requiring login before play
-- Match history, rankings, replays, move clocks
-- Email verification, password reset, OAuth / social login
-- AI opponent
-- Chat, undo, spectators, matchmaking lobby
-- Reconnect / resume after refresh or tab close (known limitation)
-- Advanced Caro rules (blocked heads, swap2, 3×3 only)
+- Accounts, login, OAuth, email verification, passwords
+- Room passcode / private rooms
+- Database; rooms surviving **server restart**
+- Match history, rankings, replays, chat, undo, spectators, AI opponent
+- **Turn timer** / clocks (see notes — mentioned once, not a feature)
+- Auto-start when player 2 joins
+- Advanced Caro rules (blocked heads, swap2, 3×3, forbidden overline)
 - Native mobile apps
-
-
-
-## Assumptions
-
-- Room creator is **player X** and always moves first, including after New game.
-- “Five in a row” means **five or more** consecutive marks in a straight line.
-- All **user-facing copy is Vietnamese**.
-- Demo uses two browsers. One seeded account is enough to show optional login.
-
-
-
-## Non-functional (thin)
-
-
-| Topic            | Rule                                                     |
-| ---------------- | -------------------------------------------------------- |
-| Language         | UI Vietnamese                                            |
-| Access           | Play is never behind login                               |
-| Capacity         | 2 players per room                                       |
-| Honesty of state | Hosted DB is source of truth for turns and cells         |
-| Auth             | Email/password only; email verification **disabled**     |
-| Persistence      | Room state lives while the room exists; no match history |
-| Refresh          | Losing the session on refresh is acceptable for MVP      |
-
-
-
-
-## Tech stack (align with the harness)
-
-- **Frontend:** TBU
-- **Auth:** email/password, optional
-- **Data / realtime:** TBU
-- **Backend:** none
-
-
-
-## Success for the 5-minute demo
-
-1. Browser A joins as **guest** (display name) and creates a room → room code visible.
-2. Browser B **logs in** (or signs up) and joins the same code **without** typing a guest name.
-3. Players reach five in a row → both boards lock → Vietnamese winner message.
-4. New game clears the board; X moves first.
-5. Optional 15s: B logs out and can still join a later room as guest.
-
-
-
-## Traceability
-
-
-| Feature                  | Stories      | Knowledge                                    |
-| ------------------------ | ------------ | -------------------------------------------- |
-| Play Caro                | US-04        | `docs/knowledge/game-rules.md`               |
-| Online room              | US-01, US-03 | `docs/knowledge/rooms-and-sync.md`           |
-| Optional auth            | US-02        | `docs/knowledge/identity-and-auth.md`        |
-| Copy / UX                | all          | `docs/knowledge/ui-copy.md`                  |
-| In vs out of scope cases | all          | `docs/knowledge/edge-cases-and-decisions.md` |
-
-
-
-
-## Closed decisions
-
-
-| Question                      | Decision                                                |
-| ----------------------------- | ------------------------------------------------------- |
-| Must players have an account? | **No.** Optional login.                                 |
-| Persist match history?        | **No.** Out of scope.                                   |
-| Benefit of logging in?        | Account name is used in the room; no guest-name prompt. |
-| Board size / win length       | 15×15; five or more in a line.                          |
-
+- Custom JWT / hosted Auth (Firebase/Supabase Auth) — not needed; guests only
+- Lobby of **full or in-progress** games; matchmaking beyond “pick a waiting room”
+- Guaranteed rejoin of a **mid-game seat** after tab close / another device (cookie identity ≠ full reconnect)
+- Ownership transfer UI, forfeit-by-disconnect polish
 
