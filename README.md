@@ -1,84 +1,54 @@
 # Voodoo AI Native — Caro Online
 
-A Vietnamese-language online **Caro (Gomoku)** game for two players. Players can create or join a shared room from different browsers, take turns on a 15×15 board, and win by placing five or more consecutive marks in a horizontal, vertical, or diagonal line.
+A web app for **Caro (Gomoku)**. Two guests enter a name, meet in a lobby, and play on a **15×15** board. The first player is **X**, the second is **O**. A player wins with **five consecutive** marks (horizontal, vertical, or diagonal). A full board with no winner is a **draw**.
 
-Guests can start playing immediately. Authentication is optional and must never block gameplay.
+There are no accounts and no room passcode. Rooms live **in memory** on the server and are lost on restart. The room **owner** (the creator) explicitly starts the first game and starts a new game after a win or draw.
 
 ## Product goal
 
-Deliver a thin, end-to-end MVP that can be demonstrated in one workshop day:
+Two browsers can create or join a room, play a legal match, see the result, and start a new game in the same room.
 
-- Two players join the same room.
-- Players can join as guests or use optional email/password authentication.
-- Players take turns on a synchronized 15×15 board.
-- The game detects wins, draws, and invalid moves.
-- The UI presents game status and results in Vietnamese.
-- The room owner can start a new game after a win or draw.
+## Target users
+
+Casual players who want a short match with a friend on another device. They should be able to play immediately after typing a name.
 
 ## MVP features
 
-### 1. Play Caro
+### 1. Guest identity
 
-- 15×15 board with 225 cells.
-- Player X moves first; player O moves second.
-- Players alternate turns.
-- A move is valid only when the selected cell is empty and it is the player's turn.
-- Five or more consecutive marks in a horizontal, vertical, or diagonal line wins.
-- A full board with no winner is a draw.
-- The board is locked after a win, draw, or timeout.
-- The room owner can explicitly start a new game.
-- A new game clears the board and makes X move first again.
+- Join with a player name. There is no registration or login.
+- The server assigns a `userId`. The browser stores that id in a cookie together with the name.
+- The same browser keeps the same guest when the landing page or lobby is refreshed, so the name is not typed again.
 
-### 2. Online rooms
+### 2. Lobby
 
-- Create a room.
-- Join an available room.
-- Maximum of two players per room.
-- The room creator becomes the owner and plays as X.
-- The second player plays as O.
-- The game state is synchronized between both players.
-- The room owner explicitly starts the first game.
-- Empty rooms are removed when no players remain.
+- **Create room:** the creator is the owner and plays as X. The room starts in a waiting state.
+- **List joinable rooms:** rooms that are waiting and have fewer than two players. Each entry shows enough to pick one (room id and owner name).
+- **Join room:** the second player is O. A room holds at most two players. There is no passcode.
+- **Leave room:** the player is removed. If the room is empty, it is deleted.
 
-### 3. Optional authentication
+### 3. Play Caro
 
-- Guests can play without registering or logging in.
-- Guests enter a display name.
-- Signed-in users use their account name in the room.
-- Email/password authentication is optional.
-- Login must never be required before playing.
+- 15×15 board. X moves first. Players alternate turns. A move is legal only on an empty cell, on the player's turn, and before the game has ended. The game API enforces these rules.
+- **Win:** five consecutive X or O marks, horizontal, vertical, or diagonal.
+- **Draw:** all 225 cells are filled and there is no winner.
+- The game does not start when the second player joins. The owner clicks **Start** when two players are in the room.
+- After a win or draw the board stays as it is. The owner clicks **New game** only if two players are still in the room. The board resets and X goes first again.
+- The UI shows the board, both names and symbols, whose turn it is, the result, and only the actions that match the current state.
 
 ## Game rules
 
-- The board contains 225 cells.
-- Each cell is empty, X, or O.
-- X always starts.
-- Players cannot place a mark in an occupied cell.
-- Players cannot move out of turn.
-- Players cannot move after the game has ended.
-- The game ends with a win, draw, or timeout.
-- The current game must not restart automatically.
-- A new game requires two players and an explicit action from the room owner.
+- The board has 225 cells. Each cell is empty, X, or O.
+- X always starts a game.
+- Players cannot place a mark in an occupied cell, move out of turn, or move after the game has ended.
+- The game ends in a win or a draw. It does not restart by itself.
+- A new game requires two players still in the room and an explicit action from the room owner.
 
 ## Player identity
 
-Guests may be assigned a unique client identity and display name. When supported by the implementation, the identity can be retained in a browser cookie so the guest can be recognized during the current participation session.
+Guests are the only players. The server assigns a `userId`, and the browser keeps that id and the display name in a cookie.
 
-Signed-in players use their account identity and do not need to enter a separate guest name.
-
-## Language and UX
-
-All user-facing copy must be in Vietnamese, including:
-
-- Navigation and page titles.
-- Form labels and buttons.
-- Room states.
-- Turn indicators.
-- Validation and error messages.
-- Win, draw, and timeout messages.
-- Accessibility labels.
-
-The board should support keyboard interaction, visible focus states, readable contrast, and clear labels for each cell where applicable.
+Refreshing the landing page or lobby keeps the same guest. That cookie is not a guarantee that a player can reclaim a mid-game seat after closing the tab or switching devices.
 
 ## Project status
 
@@ -91,8 +61,9 @@ This project is being developed as an AI-native workshop product. The repository
 
 See the following files for more context:
 
-- [`docs/product-brief.md`](docs/product-brief.md) — product vision, MVP scope, assumptions, and closed decisions.
-- [`docs/meeting-notes.md`](docs/meeting-notes.md) — Phase 1 game, lobby, API, and gameplay requirements.
+- [`docs/product-brief.md`](docs/product-brief.md) — product vision, MVP scope, and what is explicitly out of scope.
+- [`docs/meeting-notes.md`](docs/meeting-notes.md) — Phase 1 guest identity, lobby, game API, and gameplay.
+- [`docs/software-architecture-document.md`](docs/software-architecture-document.md) — workshop software architecture.
 - [`.github/agents/ba.agent.md`](.github/agents/ba.agent.md) — BA role.
 - [`.github/agents/developer.agent.md`](.github/agents/developer.agent.md) — Developer role.
 - [`.github/agents/test.agent.md`](.github/agents/test.agent.md) — Test role.
@@ -102,29 +73,33 @@ See the following files for more context:
 
 - Prefer a complete vertical slice over many incomplete features.
 - Keep game rules deterministic and independently testable.
-- Enforce critical game rules on the authoritative server or data layer; do not trust client-side validation alone.
+- Enforce critical game rules in the game API. Do not trust client-side validation alone.
+- Keep rooms in memory. Do not add a database or persistence across server restart without an explicit product decision.
 - Preserve traceability from product decision to requirement, implementation, and test.
-- Keep guest play available.
-- Keep the MVP small and suitable for a five-minute demo.
+- Keep guest play as the only way in.
+- Keep the MVP small and suitable for a short demo.
 - Do not add out-of-scope features without an explicit product decision.
 
 ## Out of scope for the MVP
 
-The following are intentionally excluded unless explicitly approved:
+The following are intentionally excluded:
 
-- Mandatory login before play.
-- Match history, rankings, or replays.
-- Email verification or password reset.
-- OAuth or social login.
-- AI opponent.
-- Chat, undo, spectators, or matchmaking.
-- Advanced Caro rules such as blocked heads, Swap2, or 3×3 restrictions.
+- Accounts, login, OAuth, email verification, and passwords.
+- Room passcodes and private rooms.
+- A database, or rooms that survive a server restart.
+- Match history, rankings, replays, chat, undo, spectators, and an AI opponent.
+- A turn timer or clock.
+- Starting the game automatically when the second player joins.
+- Advanced Caro rules such as blocked heads, Swap2, 3×3 restrictions, or forbidden overlines.
 - Native mobile applications.
-- Complex reconnect and resume behavior after refresh or tab close.
+- Custom JWT or hosted auth (for example Firebase or Supabase Auth).
+- A lobby of full or in-progress games, and matchmaking beyond picking a waiting room.
+- A guaranteed rejoin of a mid-game seat after the tab is closed or the player switches devices.
+- An ownership-transfer UI, and forfeit-by-disconnect polish.
 
-## Technology stack
+## Technology
 
-The final frontend, backend, and realtime/data technologies are still to be selected. Do not assume a framework or database from this README. Check the repository manifests and implementation files before making technology-specific changes.
+Rooms are in memory for this MVP. The frontend, backend, and realtime technologies are not selected in the product brief. Do not assume a framework or database from this README. Check the repository manifests and implementation files before making technology-specific changes.
 
 ## Contributing workflow
 
