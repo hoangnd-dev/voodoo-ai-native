@@ -27,7 +27,7 @@ Casual players in Vietnam who want a short match with a friend on another device
 
 1. **Play Caro** — 15×15 board, alternate X/O, occupied cells locked, win/draw detection, board lock on end, Vietnamese UI, New game in the same room.
 2. **Online room** — create or join by room; live sync; exactly two players; guests allowed.
-3. **Optional auth** — sign up, log in, log out (email + password). Guests can play without an account. Signed-in players use their account name in the room.
+3. **Remember user name** —  Guests can play without an account just provide name. Remember that name for next times
 
 
 
@@ -71,10 +71,13 @@ Casual players in Vietnam who want a short match with a friend on another device
 
 ## Tech stack (align with the harness)
 
-- **Frontend:** TBU
-- **Auth:** email/password, optional
-- **Data / realtime:** TBU
-- **Backend:** none
+Locked in `docs/software-architecture-document.md` §2:
+
+- **Runtime:** Node.js 24, TypeScript
+- **App:** Next.js App Router (same-origin UI + Route Handlers)
+- **Realtime:** SSE snapshot push after HTTP commands
+- **State:** in-memory (single process); authoritative server, not client
+- **Auth:** email/password, optional; guest cookie + remembered display name
 
 
 
