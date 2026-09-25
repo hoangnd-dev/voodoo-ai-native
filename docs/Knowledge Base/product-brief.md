@@ -2,7 +2,7 @@
 
 ## Overview
 
-A web app for **Caro (Gomoku)**. Two guests enter a name, meet in a lobby, and play on a **15×15** board. The first player is **X**, the second is **O**. A player wins with **five consecutive** marks (horizontal, vertical, or diagonal). A full board with no winner is a **draw**.
+A web app for **Caro (Gomoku)**. Two guests enter a name, meet in a lobby, and play on a **15×15** board. The first player is **X**, the second is **O**. A player wins with **five consecutive** marks in a horizontal, vertical, or diagonal line.
 
 No accounts. No passcode. Rooms live **in memory** on the server (lost on restart). The room **owner** (creator) explicitly starts the first game and starts a new game after a win or draw.
 
@@ -47,3 +47,8 @@ Casual players who want a short match with a friend on another device. They shou
 - Guaranteed rejoin of a **mid-game seat** after tab close / another device (cookie identity ≠ full reconnect)
 - Ownership transfer UI, forfeit-by-disconnect polish
 
+## Tech stack
+
+- **Frontend:** React + TypeScript, using a Vite SPA. Realtime updates use `socket.io-client`.
+- **Backend:** Python 3.12+ with FastAPI. Realtime communication uses Socket.IO via `python-socketio`, mounted as an ASGI application and served with Uvicorn.
+- **Data/storage:** In-process memory for rooms and active games; SQLite for guest profiles (`guests(id, display_name)`). The server runs as a single worker/instance for the MVP, so rooms and games are lost when the API restarts while guest profiles persist in SQLite.
