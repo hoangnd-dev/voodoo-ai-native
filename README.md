@@ -116,3 +116,14 @@ For a new feature or meaningful change:
 9. Update documentation and traceability artifacts.
 
 Do not commit credentials, tokens, cookies, or other secrets.
+
+## Setup harness
+
+  ```bash
+  copilot plugin marketplace add obra/superpowers-marketplace
+  copilot plugin install superpowers@superpowers-marketplace
+  ```
+- Install caveman
+  ```bash
+  npx -y github:JuliusBrussee/caveman -- --only copilot --with-init
+  ```
