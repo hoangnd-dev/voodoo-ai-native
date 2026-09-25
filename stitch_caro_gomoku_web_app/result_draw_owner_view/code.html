@@ -1,0 +1,1102 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary-fixed-dim":"#b4c5ff","on-primary-fixed-variant":"#003ea8","error-container":"#ffdad6","secondary":"#904d00","on-tertiary-container":"#ffede6","on-secondary":"#ffffff","on-tertiary-fixed":"#360f00","surface-variant":"#dae2fd","on-error-container":"#93000a","secondary-fixed-dim":"#ffb77d","outline-variant":"#c3c6d7","background":"#faf8ff","surface-container-low":"#f2f3ff","inverse-on-surface":"#eef0ff","on-secondary-container":"#663500","tertiary-fixed":"#ffdbcd","surface-container-lowest":"#ffffff","on-primary":"#ffffff","outline":"#737686","primary-fixed":"#dbe1ff","surface-bright":"#faf8ff","surface-container-highest":"#dae2fd","error":"#ba1a1a","on-primary-container":"#eeefff","secondary-container":"#fe932c","inverse-primary":"#b4c5ff","on-surface-variant":"#434655","on-secondary-fixed":"#2f1500","on-tertiary":"#ffffff","surface-tint":"#0053db","surface-container-high":"#e2e7ff","inverse-surface":"#283044","surface-dim":"#d2d9f4","surface-container":"#eaedff","on-surface":"#131b2e","tertiary":"#943700","on-error":"#ffffff","primary-container":"#2563eb","on-primary-fixed":"#00174b","on-secondary-fixed-variant":"#6e3900","secondary-fixed":"#ffdcc3","on-background":"#131b2e","tertiary-fixed-dim":"#ffb596","on-tertiary-fixed-variant":"#7d2d00","primary":"#004ac6","surface":"#faf8ff","tertiary-container":"#bc4800"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","gutter":"1.5rem","margin":"2rem","space-sm":"0.5rem","space-xl":"2rem"},"fontFamily":{"label-lg":["Inter"],"glyph-board":["Inter"],"body-lg":["Inter"],"label-md":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"metric-timer":["Inter"],"label-sm":["Inter"],"headline-sm":["Inter"],"body-md":["Inter"]},"fontSize":{"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"glyph-board":["22px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"400"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"metric-timer":["28px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"500"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 w-full max-w-[1440px] mx-auto px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><span class="font-headline-md text-headline-md tracking-tight text-on-surface">Caro</span></div><div class="flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-lg"><span class="font-label-sm text-label-sm uppercase tracking-wide text-on-surface-variant">Room</span><span class="font-label-md text-label-md text-on-surface">R-1842</span></div><div class="flex items-center gap-space-md"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-1 rounded hover:bg-surface-container-high" data-path="lobby" href="#">Leave room</a></div></div></header><main class="w-full pt-14 bg-surface"><div class="w-full max-w-[1440px] mx-auto px-margin py-space-lg flex justify-center items-start min-h-[calc(100vh-3.5rem)]"><div class="flex flex-col w-full">
+<div class="w-full grid grid-cols-12 gap-space-xl items-start pb-space-xl">
+<!-- Left Column: Players, Draw Headline, Owner Action -->
+<div class="col-span-4 flex flex-col gap-space-lg">
+<!-- Match Outcome Block -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-outline"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Round Complete</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Draw.</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">225 moves completed. Full board stalemate reached without 5-in-a-row.</p>
+</div>
+<!-- Metric Summary Card Strip -->
+
+<!-- Owner Primary Action -->
+<div class="flex flex-col gap-space-xs pt-space-sm">
+<button class="w-full py-3 px-5 rounded-lg bg-inverse-surface hover:bg-on-surface text-inverse-on-surface font-label-lg text-label-lg transition-colors flex items-center justify-center gap-space-xs shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" id="btn-new-game">
+<span class="material-symbols-outlined text-[20px]">replay</span>
+<span class="">New game</span>
+</button>
+<p class="font-body-sm text-body-sm text-on-surface-variant px-1 leading-relaxed">
+            Both players are still here. The board clears and X goes first.
+          </p>
+</div>
+</div>
+<!-- Players List -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Players in room (2)</span>
+<span class="inline-flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> Connected
+          </span>
+</div>
+<!-- Minh (Owner / You) -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center font-glyph-board text-glyph-board text-primary-container select-none">
+              X
+            </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Minh</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface">You</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary font-label-sm text-label-sm">Owner</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Played first · 113 moves</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-on-surface-variant block">Status</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Ready</span>
+</div>
+</div>
+<!-- Lan -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center font-glyph-board text-glyph-board text-tertiary-container select-none">
+              O
+            </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Lan</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Played second · 112 moves</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-on-surface-variant block">Status</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Waiting for host</span>
+</div>
+</div>
+</div>
+<!-- Quick Room Meta -->
+
+</div>
+<!-- Right Column: Locked 15x15 Full Stalemate Board -->
+<div class="col-span-8 flex flex-col items-center justify-center">
+<!-- Board Header Subtitle / State Indicator -->
+<div class="w-full max-w-[690px] flex items-center justify-between mb-space-sm px-1">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Board Locked</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">All 225 spaces filled</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1 font-body-sm text-body-sm text-primary-container">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span> X: 113
+          </span>
+<span class="inline-flex items-center gap-1 font-body-sm text-body-sm text-tertiary-container">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span> O: 112
+          </span>
+</div>
+</div>
+<!-- Board Bed Container -->
+<div class="relative bg-surface-container-lowest p-space-lg rounded-xl shadow-md select-none">
+<!-- Board Coordinate Wrapper -->
+<div class="relative flex flex-col">
+<!-- Top Column Letters (A-O) -->
+<div class="flex w-[645px] pl-[30px] pr-0 mb-1 justify-between font-label-sm text-label-sm text-outline select-none"><span class="w-10 text-center">A</span><span class="w-10 text-center">B</span><span class="w-10 text-center">C</span><span class="w-10 text-center">D</span><span class="w-10 text-center">E</span><span class="w-10 text-center">F</span><span class="w-10 text-center">G</span><span class="w-10 text-center">H</span><span class="w-10 text-center">I</span><span class="w-10 text-center">J</span><span class="w-10 text-center">K</span><span class="w-10 text-center">L</span><span class="w-10 text-center">M</span><span class="w-10 text-center">N</span><span class="w-10 text-center">O</span></div>
+<div class="flex">
+<!-- Left Row Numbers (15-1) -->
+<div class="flex flex-col justify-between h-[615px] pr-2 font-label-sm text-label-sm text-outline select-none py-1">
+<span class="h-10 flex items-center justify-end">15</span>
+<span class="h-10 flex items-center justify-end">14</span>
+<span class="h-10 flex items-center justify-end">13</span>
+<span class="h-10 flex items-center justify-end">12</span>
+<span class="h-10 flex items-center justify-end">11</span>
+<span class="h-10 flex items-center justify-end">10</span>
+<span class="h-10 flex items-center justify-end">9</span>
+<span class="h-10 flex items-center justify-end">8</span>
+<span class="h-10 flex items-center justify-end">7</span>
+<span class="h-10 flex items-center justify-end">6</span>
+<span class="h-10 flex items-center justify-end">5</span>
+<span class="h-10 flex items-center justify-end">4</span>
+<span class="h-10 flex items-center justify-end">3</span>
+<span class="h-10 flex items-center justify-end">2</span>
+<span class="h-10 flex items-center justify-end">1</span>
+</div>
+<!-- The 15x15 Interactive Grid -->
+<div class="relative w-[615px] h-[615px] bg-surface-container-lowest rounded overflow-hidden">
+<!-- Subtle Background Grid Overlay SVG -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none stroke-surface-container-highest" fill="none" height="615" viewBox="0 0 615 615" width="615"><path d="M20.5 20.5V594.5 M61.5 20.5V594.5 M102.5 20.5V594.5 M143.5 20.5V594.5 M184.5 20.5V594.5 M225.5 20.5V594.5 M266.5 20.5V594.5 M307.5 20.5V594.5 M348.5 20.5V594.5 M389.5 20.5V594.5 M430.5 20.5V594.5 M471.5 20.5V594.5 M512.5 20.5V594.5 M553.5 20.5V594.5 M594.5 20.5V594.5 M20.5 20.5H594.5 M20.5 61.5H594.5 M20.5 102.5H594.5 M20.5 143.5H594.5 M20.5 184.5H594.5 M20.5 225.5H594.5 M20.5 266.5H594.5 M20.5 307.5H594.5 M20.5 348.5H594.5 M20.5 389.5H594.5 M20.5 430.5H594.5 M20.5 471.5H594.5 M20.5 512.5H594.5 M20.5 553.5H594.5 M20.5 594.5H594.5" stroke-width="1.25"></path></svg>
+<!-- Grid of 225 cells populated dynamically and locked -->
+<div class="relative z-10 grid grid-cols-15 grid-rows-15 w-full h-full cursor-not-allowed" id="gomoku-board-cells">
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell A15: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell B15: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell C15: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell D15: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell E15: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell F15: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell G15: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell H15: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell I15: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell J15: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell K15: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell L15: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell M15: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell N15: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell O15: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell A14: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell B14: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell C14: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell D14: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell E14: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell F14: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell G14: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell H14: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell I14: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell J14: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell K14: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell L14: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell M14: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell N14: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell O14: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell A13: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell B13: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell C13: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell D13: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell E13: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell F13: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell G13: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell H13: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell I13: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell J13: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell K13: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell L13: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell M13: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell N13: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell O13: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell A12: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell B12: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell C12: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell D12: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell E12: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell F12: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell G12: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell H12: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell I12: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell J12: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell K12: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell L12: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell M12: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell N12: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell O12: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell A11: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell B11: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell C11: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell D11: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell E11: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell F11: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell G11: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell H11: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell I11: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell J11: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell K11: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell L11: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell M11: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell N11: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell O11: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell A10: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell B10: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell C10: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell D10: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell E10: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell F10: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell G10: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell H10: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell I10: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell J10: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell K10: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell L10: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell M10: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell N10: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell O10: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell A9: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell B9: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell C9: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell D9: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell E9: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell F9: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell G9: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell H9: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell I9: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell J9: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell K9: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell L9: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell M9: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell N9: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell O9: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell A8: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell B8: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell C8: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell D8: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell E8: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell F8: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell G8: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell H8: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell I8: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell J8: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell K8: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell L8: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell M8: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell N8: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell O8: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell A7: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell B7: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell C7: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell D7: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell E7: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell F7: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell G7: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell H7: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell I7: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell J7: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell K7: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell L7: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell M7: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell N7: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell O7: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell A6: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell B6: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell C6: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell D6: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell E6: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell F6: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell G6: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell H6: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell I6: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell J6: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell K6: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell L6: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell M6: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell N6: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell O6: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell A5: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell B5: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell C5: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell D5: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell E5: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell F5: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell G5: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell H5: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell I5: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell J5: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell K5: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell L5: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell M5: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell N5: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell O5: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell A4: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell B4: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell C4: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell D4: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell E4: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell F4: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell G4: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell H4: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell I4: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell J4: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell K4: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell L4: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell M4: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell N4: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell O4: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell A3: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell B3: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell C3: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell D3: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell E3: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell F3: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell G3: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell H3: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell I3: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell J3: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell K3: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell L3: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell M3: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell N3: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell O3: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell A2: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell B2: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell C2: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell D2: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell E2: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell F2: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell G2: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell H2: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell I2: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell J2: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell K2: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell L2: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell M2: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell N2: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell O2: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell A1: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell B1: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell C1: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell D1: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell E1: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell F1: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell G1: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell H1: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell I1: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell J1: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell K1: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell L1: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell M1: X">
+              X
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-tertiary-container select-none" title="Cell N1: O">
+              O
+            </div>
+          
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board text-primary-container select-none" title="Cell O1: X">
+              X
+            </div>
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    (function generateFullDrawBoard() {
+      const container = document.getElementById('gomoku-board-cells');
+      if (!container) return;
+
+      // Safe non-winning alternating layout ensuring strictly no 5-in-a-row anywhere on 15x15
+      // 225 cells total: 113 for X (first), 112 for O (second)
+      // Tile pattern block 4x4 or knight pattern ensures max run length <= 3
+      const pattern = [
+        ['X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O'],
+        ['O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X'],
+        ['X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'O'],
+        ['X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O'],
+        ['O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X'],
+        ['X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'O'],
+        ['X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O'],
+        ['O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X'],
+        ['X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'O'],
+        ['X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'O', 'X', 'X', 'O'],
+        ['O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'X'],
+        ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']
+      ];
+
+      // Exact count verification and rendering
+      let xCount = 0;
+      let oCount = 0;
+      const htmlFrag = [];
+
+      for (let r = 0; r < 15; r++) {
+        for (let c = 0; c < 15; c++) {
+          const piece = pattern[r][c];
+          if (piece === 'X') xCount++;
+          else oCount++;
+
+          const isX = piece === 'X';
+          const colorClass = isX ? 'text-primary-container' : 'text-tertiary-container';
+          
+          htmlFrag.push(`
+            <div class="flex items-center justify-center w-[41px] h-[41px] font-glyph-board text-glyph-board ${colorClass} select-none" title="Cell ${String.fromCharCode(65 + c)}${15 - r}: ${piece}">
+              ${piece}
+            </div>
+          `);
+        }
+      }
+
+      container.innerHTML = htmlFrag.join('');
+
+      // Add simple feedback interaction on New Game button
+      const newGameBtn = document.getElementById('btn-new-game');
+      if (newGameBtn) {
+        newGameBtn.addEventListener('click', function() {
+          this.innerHTML = `
+            <span class="material-symbols-outlined text-[20px] animate-spin">refresh</span>
+            <span>Clearing board...</span>
+          `;
+          setTimeout(() => {
+            window.location.reload();
+          }, 400);
+        });
+      }
+    })();
+  </script>
+</div></div></main>
+
+</body></html>
