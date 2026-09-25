@@ -4,7 +4,7 @@ A web app for **Caro (Gomoku)**. Two guests enter a name, meet in a lobby, and p
 
 There are no accounts and no room passcode. Rooms live **in memory** on the server and are lost on restart. The room **owner** (the creator) explicitly starts the first game and starts a new game after a win or draw.
 
-## Product goal
+## Product goal  
 
 Two browsers can create or join a room, play a legal match, see the result, and start a new game in the same room.
 
