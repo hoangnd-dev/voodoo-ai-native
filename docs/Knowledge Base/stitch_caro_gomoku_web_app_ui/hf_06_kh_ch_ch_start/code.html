@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HF-06 — Khách chờ Start</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #F6F3EC;
+      color: #1C1917;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-serif-title {
+      font-family: 'Newsreader', serif;
+    }
+  </style>
+</head>
+<body class="w-[1440px] h-[900px] overflow-hidden flex flex-col justify-between relative select-none">
+  <!-- Top Bar / Chrome -->
+  <div>
+    
+
+    <!-- App Header: Shows "You are Lan · O" -->
+    <header class="w-full px-16 py-4 flex items-center justify-between border-b border-[#E7E3D8]/80 bg-[#FAF8F5]/60 backdrop-blur-sm"><div class="flex items-center gap-6">
+        <span class="font-serif-title text-2xl font-medium tracking-tight text-[#1C1917]">Caro</span>
+        <div class="h-4 w-px bg-[#E7E3D8]"></div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs uppercase tracking-wider text-[#78716C] font-semibold">Room</span>
+          <span class="px-2.5 py-0.5 bg-[#EFE9DC] text-xs font-mono font-bold text-[#1C1917] rounded border border-[#D6CDBC]">4F2A</span>
+        </div>
+        <div class="h-4 w-px bg-[#E7E3D8]"></div>
+        <div class="text-xs font-medium text-[#78716C]">
+          You are <span class="font-semibold text-[#C2410C]">Lan · O</span>
+        </div>
+      </div>
+      <div>
+        <button type="button" class="text-xs text-rose-700 bg-rose-50/80 hover:bg-rose-100 border border-rose-200/80 rounded-lg px-3.5 py-1.5 font-medium transition-colors flex items-center gap-1.5 shadow-sm">
+  <svg class="w-3.5 h-3.5 text-rose-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+    <polyline points="16 17 21 12 16 7"></polyline>
+    <line x1="21" y1="12" x2="9" y2="12"></line>
+  </svg>
+  <span class="">Leave room</span>
+</button>
+      </div></header>
+  </div>
+
+  <!-- Main Game Stage -->
+  <main class="w-full max-w-5xl mx-auto px-8 flex-1 flex flex-col items-center justify-center py-2">
+    <!-- Seats Area: Same two seats as HF-05 -->
+    <div class="w-[540px] flex items-center justify-between mb-3 px-5 py-2.5 bg-[#FAF8F5] border border-[#D6CDBC] rounded-xl shadow-sm">
+      <!-- Seat 1: Minh · X -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-[#1C1917] text-[#FAF8F5] flex items-center justify-center font-bold text-sm shadow-sm">
+          ✕
+        </div>
+        <div class="text-left">
+          <div class="text-sm font-bold text-[#1C1917] leading-tight flex items-center gap-1.5">
+            Minh
+            <span class="px-1.5 py-0.2 bg-[#EFE9DC] border border-[#D6CDBC] text-[10px] font-semibold text-[#78716C] rounded">Host</span>
+          </div>
+          <div class="text-[11px] text-[#78716C]">Player X · Turn 1</div>
+        </div>
+      </div>
+
+      <!-- VS separator badge -->
+      <div class="px-2 py-0.5 rounded-full bg-[#EFE9DC] text-[11px] font-serif-title italic text-[#78716C] border border-[#D6CDBC]">vs</div>
+
+      <!-- Seat 2: Lan · O (Current player) -->
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <div class="text-sm font-bold text-[#1C1917] leading-tight flex items-center justify-end gap-1.5">
+            <span class="px-1.5 py-0.2 bg-rose-100/80 border border-rose-200 text-[10px] font-semibold text-[#C2410C] rounded">You</span>
+            Lan
+          </div>
+          <div class="text-[11px] text-[#C2410C] font-semibold">Player O</div>
+        </div>
+        <div class="w-9 h-9 rounded-full bg-[#FAF8F5] border-2 border-[#C2410C] text-[#C2410C] flex items-center justify-center font-bold text-base shadow-sm">
+          ○
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Message -->
+    <div class="mb-3 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF8F5] border border-[#D6CDBC] text-xs font-medium text-[#78716C] shadow-sm">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C2410C] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#C2410C]"></span>
+        </span>
+        Waiting for Minh to start.
+      </div>
+    </div>
+
+    <!-- 15x15 Caro Board (Empty & Locked) -->
+    <div class="relative p-3 bg-[#FAF8F5] rounded-2xl border border-[#D6CDBC] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-not-allowed w-[540px] flex flex-col items-center justify-center overflow-hidden">
+      <!-- Grid surface (locked/dimmed) -->
+      <div class="bg-[#EFE9DC] border border-[#D6CDBC] rounded-lg shadow-inner p-0.5 opacity-55">
+        <div id="board-cells" class="grid grid-cols-15 w-[510px] h-[510px]" style="display: grid; grid-template-columns: repeat(15, 34px); grid-template-rows: repeat(15, 34px);"></div>
+      </div>
+
+      <!-- Overlay Floating Badge: Unmistakably blocked state -->
+      <div class="absolute inset-0 flex items-center justify-center bg-[#FAF8F5]/40 backdrop-blur-[1px] pointer-events-none">
+        <div class="flex flex-col items-center gap-2.5 px-6 py-4 rounded-xl bg-[#FAF8F5] border border-[#D6CDBC] shadow-lg max-w-xs text-center">
+          <div class="w-10 h-10 rounded-full bg-[#EFE9DC] border border-[#D6CDBC] flex items-center justify-center text-[#78716C]">
+            <svg class="w-5 h-5 text-[#78716C]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-[#1C1917]">Board Locked</div>
+            <div class="text-xs text-[#78716C] mt-0.5">Waiting for host to start the game</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Start or New Game buttons; Only Leave in header -->
+  </main>
+
+  <script>
+    const container = document.getElementById('board-cells');
+    for (let r = 1; r <= 15; r++) {
+      for (let c = 1; c <= 15; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'w-[32px] h-[32px] border-[0.5px] border-[#D6CDBC] flex items-center justify-center relative cursor-not-allowed';
+        if ((r === 4 || r === 12 || r === 8) && (c === 4 || c === 12 || c === 8)) {
+          const dot = document.createElement('div');
+          dot.className = 'w-1 h-1 rounded-full bg-[#A8A29E]/60 pointer-events-none';
+          cell.appendChild(dot);
+        }
+        container.appendChild(cell);
+      }
+    }
+  </script>
+
+  <!-- Footer -->
+  
+
+
+
+
+
+
+
+
+</body></html>
