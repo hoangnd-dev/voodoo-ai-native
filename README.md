@@ -1,6 +1,6 @@
 # Voodoo AI Native — Caro Online
 
-A web app for **Caro (Gomoku)**. Two guests enter a names, meet in a lobby, and play on a **15×15** board. The first player is **X**, the second is **O**. A player wins with **five consecutive** marks (horizontal, vertical, or diagonal). A full board with no winner is a **draw**.
+A web app for **Caro (Gomoku)**. Two guests enter a name, meet in a lobby, and play on a **15×15** board. The first player is **X**, the second is **O**. A player wins with **five consecutive** marks (horizontal, vertical, or diagonal). A full board with no winner is a **draw**.
 
 There are no accounts and no room passcode. Rooms live **in memory** on the server and are lost on restart. The room **owner** (the creator) explicitly starts the first game and starts a new game after a win or draw.
 
