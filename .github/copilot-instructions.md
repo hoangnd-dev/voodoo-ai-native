@@ -10,7 +10,7 @@ Read these files before making product-level decisions:
 - `docs/product-brief.md`
 - `docs/meeting-notes.md`
 - `docs/token-log.md`
-- Relevant files under `docs/Knowledge Base/`, `docs/requirements/`, and `docs/superpowers/specs/` when they exist
+- Relevant files under `docs/knowledge/`, `docs/requirements/`, and `docs/design` when they exist
 
 Use `docs/product-brief.md` as the primary source for product vision and MVP scope. If it conflicts with `docs/meeting-notes.md`, report the conflict instead of silently choosing a decision.
 
