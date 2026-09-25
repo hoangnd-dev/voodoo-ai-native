@@ -2,14 +2,14 @@
 
 A Vietnamese-language online **Caro (Gomoku)** game for two players. Players can create or join a shared room from different browsers, take turns on a 15×15 board, and win by placing five or more consecutive marks in a horizontal, vertical, or diagonal line.
 
-Guests can start playing immediately. Authentication is optional and must never block gameplay.
+Every player is a guest. There is no account or login.
 
 ## Product goal
 
 Deliver a thin, end-to-end MVP that can be demonstrated in one workshop day:
 
-- Two players join the same room.
-- Players can join as guests or use optional email/password authentication.
+- Two guest players join the same room.
+- Each guest enters a display name. The app remembers that name for the next visit.
 - Players take turns on a synchronized 15×15 board.
 - The game detects wins, draws, and invalid moves.
 - The UI presents game status and results in Vietnamese.
@@ -40,13 +40,11 @@ Deliver a thin, end-to-end MVP that can be demonstrated in one workshop day:
 - The room owner explicitly starts the first game.
 - Empty rooms are removed when no players remain.
 
-### 3. Optional authentication
+### 3. Remember guest name
 
-- Guests can play without registering or logging in.
-- Guests enter a display name.
-- Signed-in users use their account name in the room.
-- Email/password authentication is optional.
-- Login must never be required before playing.
+- Every player is a guest. No registration or login.
+- The guest enters a display name to create or join a room.
+- The browser remembers that name for the next visit.
 
 ## Game rules
 
@@ -62,9 +60,7 @@ Deliver a thin, end-to-end MVP that can be demonstrated in one workshop day:
 
 ## Player identity
 
-Guests may be assigned a unique client identity and display name. When supported by the implementation, the identity can be retained in a browser cookie so the guest can be recognized during the current participation session.
-
-Signed-in players use their account identity and do not need to enter a separate guest name.
+Each guest gets a unique `userId` (cookie) and a display name. SQLite stores that pair so the id still resolves after the API process restarts. `localStorage` prefills the display name. Rooms and boards stay in memory and are not restored after restart or refresh.
 
 ## Language and UX
 
@@ -92,6 +88,7 @@ This project is being developed as an AI-native workshop product. The repository
 See the following files for more context:
 
 - [`docs/product-brief.md`](docs/product-brief.md) — product vision, MVP scope, assumptions, and closed decisions.
+- [`docs/superpowers/specs/2026-09-25-caro-online-architecture-design.md`](docs/superpowers/specs/2026-09-25-caro-online-architecture-design.md) — architecture and technology stack (canonical).
 - [`docs/meeting-notes.md`](docs/meeting-notes.md) — Phase 1 game, lobby, API, and gameplay requirements.
 - [`.github/agents/ba.agent.md`](.github/agents/ba.agent.md) — BA role.
 - [`.github/agents/developer.agent.md`](.github/agents/developer.agent.md) — Developer role.
@@ -104,7 +101,7 @@ See the following files for more context:
 - Keep game rules deterministic and independently testable.
 - Enforce critical game rules on the authoritative server or data layer; do not trust client-side validation alone.
 - Preserve traceability from product decision to requirement, implementation, and test.
-- Keep guest play available.
+- Keep play guest-only.
 - Keep the MVP small and suitable for a five-minute demo.
 - Do not add out-of-scope features without an explicit product decision.
 
@@ -112,10 +109,9 @@ See the following files for more context:
 
 The following are intentionally excluded unless explicitly approved:
 
-- Mandatory login before play.
+- Accounts, sign-up, sign-in, or logout.
 - Match history, rankings, or replays.
-- Email verification or password reset.
-- OAuth or social login.
+- Email verification, password reset, or OAuth.
 - AI opponent.
 - Chat, undo, spectators, or matchmaking.
 - Advanced Caro rules such as blocked heads, Swap2, or 3×3 restrictions.
@@ -124,7 +120,7 @@ The following are intentionally excluded unless explicitly approved:
 
 ## Technology stack
 
-The final frontend, backend, and realtime/data technologies are still to be selected. Do not assume a framework or database from this README. Check the repository manifests and implementation files before making technology-specific changes.
+See [`docs/superpowers/specs/2026-09-25-caro-online-architecture-design.md`](docs/superpowers/specs/2026-09-25-caro-online-architecture-design.md) §3. Summary: FastAPI + Socket.IO backend, React (Vite) frontend, in-memory rooms, SQLite guest profiles, no accounts.
 
 ## Contributing workflow
 
