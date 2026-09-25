@@ -42,5 +42,8 @@ The demo path must reach the goal in the product brief.
 Save docs/requirements/delivery-plan.md with columns: order, story id, depends on, why this order, on the demo path (yes/no).
 ```
 ## Design / SAD
+```bash
+/caveman Using superpower to create the design/software-architechture-design.md base on the @file:product-brief.md
+```
 ## Delivery planning
 ## Build (spec-driven loop)
