@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+LOG_FILE="docs/token-log.md"
+WORKLOG_FILE=".ai-worklog.json"
+COMMIT_SHA="$(git rev-parse --short HEAD)"
+COMMIT_TIME="$(git log -1 --format=%cI HEAD | sed 's/T/ /; s/+.*//')"
+COMMIT_MESSAGE="$(git log -1 --format=%s HEAD | sed 's/|/\\|/g')"
+CHANGED_FILES="$(git diff-tree --no-commit-id --name-only -r HEAD | tr '\n' ', ' | sed 's/, $//' | sed 's/|/\\|/g')"
+
+if [[ ! -f "$LOG_FILE" ]]; then
+  echo "Skipping token log: $LOG_FILE does not exist." >&2
+  exit 0
+fi
+
+if [[ -f "$WORKLOG_FILE" ]] && command -v jq >/dev/null 2>&1; then
+  AGENT="$(jq -r '.agent // "Not recorded"' "$WORKLOG_FILE" | sed 's/|/\\|/g')"
+  CONTEXT="$(jq -r '.context // "Not recorded"' "$WORKLOG_FILE" | sed 's/|/\\|/g')"
+  REASON="$(jq -r '.reason // "Not recorded"' "$WORKLOG_FILE" | sed 's/|/\\|/g')"
+  OPTIMIZATION="$(jq -r '.optimization // "Not recorded"' "$WORKLOG_FILE" | sed 's/|/\\|/g')"
+else
+  AGENT="Not recorded"
+  CONTEXT="$CHANGED_FILES"
+  REASON="See commit ${COMMIT_SHA}: ${COMMIT_MESSAGE}"
+  OPTIMIZATION="Not recorded"
+fi
+
+OUTCOME="Commit \`${COMMIT_SHA}\`: ${COMMIT_MESSAGE}"
+ROW="| ${COMMIT_TIME} | ${COMMIT_MESSAGE} | ${AGENT} | ${CONTEXT} | ${REASON} | ${OPTIMIZATION} | ${OUTCOME} |"
+
+TEMP_FILE="$(mktemp)"
+awk -v row="$ROW" '
+  /^## Significant AI usage$/ { in_section=1 }
+  in_section && /^\|---/ && !inserted {
+    print
+    print row
+    inserted=1
+    next
+  }
+  { print }
+' "$LOG_FILE" > "$TEMP_FILE"
+
+mv "$TEMP_FILE" "$LOG_FILE"
+
+if [[ -f "$WORKLOG_FILE" ]]; then
+  rm "$WORKLOG_FILE"
+fi
+
+echo "Added commit ${COMMIT_SHA} to ${LOG_FILE}."
+echo "Remember to include ${LOG_FILE} in your next commit."
