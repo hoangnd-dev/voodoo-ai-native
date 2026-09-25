@@ -122,8 +122,24 @@ Do not commit credentials, tokens, cookies, or other secrets.
   ```bash
   copilot plugin marketplace add obra/superpowers-marketplace
   copilot plugin install superpowers@superpowers-marketplace
-  ```
-- Install caveman
-  ```bash
+
+  # Install caveman
   npx -y github:JuliusBrussee/caveman -- --only copilot --with-init
   ```
+
+## Mob working
+### Requirements
+```bash
+```
+### Design / SAD (optional)
+```bash
+```
+### Delivery planning
+```bash
+```
+### Build
+```bash
+```
+### Polish + demo prep
+```bash
+```
