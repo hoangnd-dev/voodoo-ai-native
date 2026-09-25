@@ -120,6 +120,9 @@ Do not commit credentials, tokens, cookies, or other secrets.
 ## Setup harness
 
   ```bash
+  # Install copilot CLI
+  curl -fsSL https://gh.io/copilot-install | bash
+
   copilot plugin marketplace add obra/superpowers-marketplace
   copilot plugin install superpowers@superpowers-marketplace
 
