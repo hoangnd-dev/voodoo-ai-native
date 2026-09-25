@@ -8,10 +8,11 @@ Record each participant's Copilot usage before and after the workshop. Use the s
 
 | Participant | Start AIC used | End AIC used | AIC consumed | Evidence |
 |---|---:|---:|---:|---|
-| Member 1 |  |  |  | Screenshot or link |
-| Member 2 |  |  |  | Screenshot or link |
-| Member 3 |  |  |  | Screenshot or link |
-| Member 4 |  |  |  | Screenshot or link |
+| Hoang Nguyen Duc |  |  |  | Screenshot or link |
+| Tran Huynh |  |  |  | Screenshot or link |
+| Hong Nguyen |  |  |  | Screenshot or link |
+| Hoa Tran Van |  |  |  | Screenshot or link |
+| Truong Do Thanh |  |  |  | Screenshot or link |
 | **Team total** |  |  | **0** |  |
 
 ### Calculation
