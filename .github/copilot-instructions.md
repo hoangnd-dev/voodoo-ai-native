@@ -10,7 +10,7 @@ Read these files before making product-level decisions:
 - `docs/product-brief.md`
 - `docs/meeting-notes.md`
 - `docs/token-log.md`
-- Relevant files under `docs/knowledge/`, `docs/requirements/`, and `docs/design/` when they exist
+- Relevant files under `docs/Knowledge Base/`, `docs/requirements/`, and `docs/superpowers/specs/` when they exist
 
 Use `docs/product-brief.md` as the primary source for product vision and MVP scope. If it conflicts with `docs/meeting-notes.md`, report the conflict instead of silently choosing a decision.
 
@@ -55,6 +55,27 @@ Before changing code:
 6. Confirm that the requested change is within the current scope.
 
 Do not assume a framework or database from the product brief. The technology stack must be verified from repository files.
+
+## Tech-stack instructions
+
+The technology stack is documented in `.github/instructions/`. These rules are scoped by file path and apply to specific layers:
+
+| Layer | Instructions | Scope |
+|-------|--------------|-------|
+| **Frontend (React + TypeScript)** | `.github/instructions/react/react-typescript.instructions.md` | `frontend/**/*.tsx`, `frontend/**/*.ts` |
+| **Build tool (Vite)** | `.github/instructions/react/vite.instructions.md` | `frontend/**`, `vite.config.ts`, `.env*` |
+| **Backend (FastAPI + Socket.IO)** | `.github/instructions/python-fastapi/fastapi-socketio.instructions.md` | `backend/**/*.py`, `app/**`, `pyproject.toml` |
+| **Data persistence (SQLite)** | `.github/instructions/data/sqlite-persistence.instructions.md` | `backend/**`, `domain/guests/**`, `app/domain/guests/**` |
+
+**Read the relevant instruction file before writing code in that layer.** Apply the rules and patterns documented there.
+
+Key principles across all layers:
+
+- **Server is authoritative:** All game rules, room state, and move validation happen on the server.
+- **React renders snapshots:** Components render server state, never optimistic local state.
+- **Vite proxy for local dev:** Use the proxy in `vite.config.ts` to avoid CORS; FastAPI runs on port 8000.
+- **Guests in SQLite, rooms in memory:** Guest profiles persist; rooms and games are ephemeral.
+- **One Uvicorn worker:** Rooms live in process memory; do not scale to multiple workers.
 
 ## Role agents
 
@@ -111,7 +132,7 @@ Enforce critical game rules on the authoritative server or data layer; client-si
 
 ## Vietnamese UX
 
-All user-facing text must be natural Vietnamese, including labels, buttons, validation messages, room states, turn indicators, results, errors, toasts, and accessibility labels. Use consistent domain terms and do not mix English and Vietnamese unnecessarily.
+All user-facing text must be natural Vietnamese, including labels, buttons, validation messages, room states, turn indicators, results, errors, toasts, and accessibility labels. Use consistent, clear Vietnamese copy across the application. Refer to `docs/product-brief.md` and any i18n file for term definitions and translations.
 
 ## Commit-based AI usage logging
 
@@ -142,7 +163,7 @@ The `.githooks/post-commit` hook reads this file and appends a row to `docs/toke
 
 Do not commit `.ai-worklog.json`; it is ignored by `.gitignore`.
 
-The hook records commit evidence and work metadata, but it cannot determine the actual AIC or raw token count. Never invent an AIC/token number. Record AIC manually from the GitHub Copilot usage dashboard in `docs/token-log.md` before and after the workshop.
+The hook records commit evidence and work metadata, but it cannot determine the actual AIC or raw token count. Never invent an AIC/token number. Record AIC manually from the GitHub Copilot usage dashboard in your IDE.
 
 Do not make the post-commit hook create another commit automatically. Review the generated `docs/token-log.md` entry and include it in the next normal commit/push.
 
