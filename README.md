@@ -4,7 +4,7 @@ A web app for **Caro (Gomoku)**. Two guests enter a name, meet in a lobby, and p
 
 There are no accounts and no room passcode. Rooms live **in memory** on the server and are lost on restart. The room **owner** (the creator) explicitly starts the first game and starts a new game after a win or draw.
 
-## Product goal
+## Product goal  
 
 Two browsers can create or join a room, play a legal match, see the result, and start a new game in the same room.
 
@@ -116,3 +116,33 @@ For a new feature or meaningful change:
 9. Update documentation and traceability artifacts.
 
 Do not commit credentials, tokens, cookies, or other secrets.
+
+## Setup harness
+
+  ```bash
+  # Install copilot CLI
+  curl -fsSL https://gh.io/copilot-install | bash
+
+  copilot plugin marketplace add obra/superpowers-marketplace
+  copilot plugin install superpowers@superpowers-marketplace
+
+  # Install caveman
+  npx -y github:JuliusBrussee/caveman -- --only copilot --with-init
+  ```
+
+## Mob working
+### Requirements
+```bash
+```
+### Design / SAD (optional)
+```bash
+```
+### Delivery planning
+```bash
+```
+### Build
+```bash
+```
+### Polish + demo prep
+```bash
+```
