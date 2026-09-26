@@ -34,12 +34,7 @@ Cite rule IDs and the mock screen on each story.
 Do not copy the rule tables. Do not add behavior the sources mark out of scope.
 Save one Markdown file per story under docs/requirements/user-stories/.
 
-/caveman
-Use skill ba-agile-scrum-product-owner.
-Input: docs/requirements/user-stories/
-Order the stories by dependency.
-The demo path must reach the goal in the product brief.
-Save docs/requirements/delivery-plan.md with columns: order, story id, depends on, why this order, on the demo path (yes/no).
+
 ```
 ## Design / SAD
 ```bash
